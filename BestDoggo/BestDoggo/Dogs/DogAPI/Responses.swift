@@ -13,7 +13,7 @@ struct DogBreedListResp: Codable {
     let message: [String: [String]]
 }
 
-struct DogImagesResp: Codable {
+struct DogImageResp<T: Codable>: Codable {
     let status: String
-    let message: [String]
+    let message: T
 }

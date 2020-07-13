@@ -13,16 +13,21 @@ struct BreedsListView: View {
     
     init(viewModel: BreedsListViewModel) {
         self.viewModel = viewModel
-        print(self.viewModel.$dogList)
     }
     
     var body: some View {
         NavigationView {
               List {
-                ForEach(viewModel.dogList, id: \.self) { dog in
-                  HStack {
-                    Text(dog)
-                  }
+                if viewModel.dogList.isEmpty {
+                    emptySection
+                } else {
+                    ForEach(viewModel.dogList, id: \.self) { dog in
+                      HStack {
+//                        BreedImageView(viewModel: BreedImageViewModel(breed: dog, client: APIClient()))
+                        Text(dog).fontWeight(.light)
+                        Spacer()
+                      }
+                    }
                 }
               }
               .onAppear(perform: self.viewModel.fetchDogBreeds)
@@ -42,6 +47,15 @@ struct NavigationButton: View {
       Text(text)
     })
   }
+}
+
+private extension BreedsListView {
+    var emptySection: some View {
+      Section {
+        Text("No results")
+          .foregroundColor(.gray)
+      }
+    }
 }
 
 struct BreedsListView_Previews: PreviewProvider {
