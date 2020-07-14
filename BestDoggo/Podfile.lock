@@ -1,0 +1,16 @@
+PODS:
+  - URLImage (0.9.18)
+
+DEPENDENCIES:
+  - URLImage
+
+SPEC REPOS:
+  trunk:
+    - URLImage
+
+SPEC CHECKSUMS:
+  URLImage: 0dd3d47ac83fc4629d9e1dd9111b20768edde2be
+
+PODFILE CHECKSUM: acf25accc125a84ce70286393977c4e0e70ac668
+
+COCOAPODS: 1.9.1

@@ -9,7 +9,7 @@
 import Foundation
 import Combine
 
-class BreedsListViewModel: ObservableObject {
+class BreedsListViewModel: ObservableObject, Identifiable {
     @Published var dogList: [String] = []
     
     private let client: APIClient
@@ -22,7 +22,7 @@ class BreedsListViewModel: ObservableObject {
     
     init(client: APIClient, scheduler: DispatchQueue = DispatchQueue(label: "BreedsListViewModel")) {
         self.client = client
-//        fetchDogBreeds()
+        fetchDogBreeds()
     }
     
     func fetchDogBreeds() {
@@ -37,7 +37,6 @@ class BreedsListViewModel: ObservableObject {
                     guard let self = self else { return }
                     switch value {
                     case .failure:
-                        print("Failure")
                         self.dogList = []
                     case .finished:
                         break
@@ -45,7 +44,6 @@ class BreedsListViewModel: ObservableObject {
                 },
                 receiveValue: { [weak self] dogs in
                     guard let self = self else { return }
-                    print("Successful")
                     self.dogList = Array(dogs)
             })
     }

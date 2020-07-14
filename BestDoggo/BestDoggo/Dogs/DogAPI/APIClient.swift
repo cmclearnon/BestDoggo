@@ -11,7 +11,8 @@ import Combine
 
 protocol APICallable {
     func listAllBreeds() -> AnyPublisher<DogBreedListResp, APIError>
-    func randomImages(for breed: String) -> AnyPublisher<DogImagesResp, APIError>
+    func getSingleDogImageURL(for breed: String, amount: Int) -> AnyPublisher<DogImageResp<String>, APIError>
+    func getRandomImageURLs(for breed: String, amount: Int) -> AnyPublisher<DogImageResp<[String]>, APIError>
 }
 
 class APIClient {
@@ -22,20 +23,17 @@ class APIClient {
     }
 }
 
-extension APIClient {
-    struct Response<T> {
-        let value: T
-        let response: URLResponse
-    }
-}
-
 extension APIClient: APICallable {
     func listAllBreeds() -> AnyPublisher<DogBreedListResp, APIError> {
         return fetch(with: getAllBreedsURL())
     }
     
-    func randomImages(for breed: String) -> AnyPublisher<DogImagesResp, APIError> {
-        return fetch(with: getRandomImagesURL(of: breed))
+    func getSingleDogImageURL(for breed: String, amount: Int) -> AnyPublisher<DogImageResp<String>, APIError> {
+        return fetch(with: getRandomImagesURL(of: breed, amount: amount))
+    }
+    
+    func getRandomImageURLs(for breed: String, amount: Int) -> AnyPublisher<DogImageResp<[String]>, APIError> {
+        return fetch(with: getRandomImagesURL(of: breed, amount: amount))
     }
     
     private func fetch<T: Decodable>(with endpoint: URL?) -> AnyPublisher<T, APIError> {
@@ -46,7 +44,7 @@ extension APIClient: APICallable {
             let error = APIError.network(description: "Bad URL")
             return Fail(error: error).eraseToAnyPublisher()
         }
-        print("URL: \(url)")
+
         /// URLSession.dataTaskPublisher for fetching Dog API data
         /// Returns either tuple (Data, URLResponse) or URLError
         return URLSession.shared.dataTaskPublisher(for: URLRequest(url: url))
@@ -64,8 +62,8 @@ extension APIClient: APICallable {
     }
 }
 
+/// Construction of different Dog API endpoint URLs
 private extension APIClient {
-    /// Construction of different Dog API endpoint URLs
     private struct Domains {
         static let baseURL = "https://dog.ceo"
     }
@@ -73,7 +71,7 @@ private extension APIClient {
     private struct Routes {
         static let listAllBreeds = "/api/breeds/list/all"
         static let selectedBreed = "/api/breed/"
-        static let randomImages = "/images/random/10"
+        static let randomImages = "/images/random/"
     }
 
     func getAllBreedsURL() -> URL? {
@@ -82,11 +80,12 @@ private extension APIClient {
         return fullURL
     }
 
-    func getRandomImagesURL(of breed: String) -> URL? {
+    func getRandomImagesURL(of breed: String, amount: Int) -> URL? {
         let urlString = Domains.baseURL
                         + Routes.selectedBreed
                         + breed
                         + Routes.randomImages
+                        + String(amount)
         let fullURL = URL(string: urlString)
         return fullURL
     }
