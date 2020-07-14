@@ -8,6 +8,7 @@
 
 import Foundation
 import Combine
+import SwiftUI
 
 class DogListCardViewModel: ObservableObject {
     @Published var urlList: [String] = []

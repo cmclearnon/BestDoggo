@@ -26,7 +26,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let viewModel = BreedsListViewModel(client: client)
         let breedsListView = BreedsListView(viewModel: viewModel)
         
-//        let dogGalleryView = DogGalleryView(viewModel: DogGalleryViewModel(breed: "hound", client: APIClient()))
+        let dogGalleryView = DogGalleryView(viewModel: DogGalleryViewModel(breed: "hound", client: APIClient()))
 
         // Use a UIHostingController as window root view controller.
         let window = UIWindow(windowScene: windowScene)

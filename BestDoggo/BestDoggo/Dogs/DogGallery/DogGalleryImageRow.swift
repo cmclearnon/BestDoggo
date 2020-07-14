@@ -27,7 +27,7 @@ struct DogGalleryImageRow: View {
                             .cornerRadius(10)
                     }
                 }
-            }
+            }.lineSpacing(15)
         }
     }
 }

@@ -16,13 +16,15 @@ struct DogGalleryView: View {
     }
     
     var body: some View {
-        NavigationView {
-            List {
-                DogGalleryImageRow(viewModel: DogGalleryViewModel(breed: self.viewModel.breed, client: APIClient()))
-            }.navigationBarTitle(Text(self.viewModel.breed.capitalizingFirstLetter()))
-                .navigationBarItems(
-                    trailing: NavigationButton(text: "Refresh", tapAction: self.viewModel.fetchImageURLs))
-        }
+        VStack {
+//            List {
+            DogGalleryImageRow(viewModel: DogGalleryViewModel(breed: self.viewModel.breed, client: APIClient()))
+//            }
+//        }
+        }            .navigationBarTitle(Text(self.viewModel.breed.capitalizingFirstLetter()), displayMode: .inline)
+            .navigationBarItems(
+                trailing: NavigationButton(text: "Refresh", tapAction: self.viewModel.fetchImageURLs)
+            )
     }
 }
 

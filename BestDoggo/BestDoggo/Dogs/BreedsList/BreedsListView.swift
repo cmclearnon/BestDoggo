@@ -10,6 +10,8 @@ import SwiftUI
 
 struct BreedsListView: View {
     @ObservedObject var viewModel: BreedsListViewModel
+
+    @State var showSheetView = false
     
     init(viewModel: BreedsListViewModel) {
         self.viewModel = viewModel
@@ -17,15 +19,25 @@ struct BreedsListView: View {
     
     var body: some View {
         NavigationView {
-              List {
-                if viewModel.dogList.isEmpty {
-                    emptySection
+            List(viewModel.dogList, id: \.self) { dog in
+                if self.viewModel.dogList.isEmpty {
+                    self.emptySection
                 } else {
-                    ForEach(viewModel.dogList, id: \.self) { dog in
-                      HStack {
-                        DogListCardView(viewModel: DogListCardViewModel(breed: dog, client: APIClient()))
-//                        Spacer()
-                      }
+                    VStack(spacing: 15) {
+                        NavigationLink(destination: DogGalleryView(viewModel: DogGalleryViewModel(breed: dog, client: APIClient()))) {
+                            DogListCardView(viewModel: DogListCardViewModel(breed: dog, client: APIClient()))
+                        }
+                        
+//                        ForEach(viewModel.dogList, id: \.self) { dog in
+//                            DogListCardView(viewModel: DogListCardViewModel(breed: dog, client: APIClient()))
+////                            Button(action: {
+////                                self.showSheetView.toggle()
+////                            }) {
+////                                DogListCardView(viewModel: DogListCardViewModel(breed: dog, client: APIClient()))
+////                            }.sheet(isPresented: self.$showSheetView) {
+////                                DogGalleryView(viewModel: DogGalleryViewModel(breed: dog, client: APIClient()), showSheetView: self.$showSheetView)
+////                            }
+//                        }
                     }
                 }
               }
