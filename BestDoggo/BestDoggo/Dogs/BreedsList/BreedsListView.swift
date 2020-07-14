@@ -41,7 +41,7 @@ struct BreedsListView: View {
                     }
                 }
               }
-              .onAppear(perform: self.viewModel.fetchDogBreeds)
+//              .onAppear(perform: self.viewModel.fetchDogBreeds)
               .navigationBarTitle("Dogs")
                 .navigationBarItems(
                     trailing: NavigationButton(text: "Refresh", tapAction: self.viewModel.fetchDogBreeds))

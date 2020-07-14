@@ -22,6 +22,7 @@ class BreedsListViewModel: ObservableObject, Identifiable {
     
     init(client: APIClient, scheduler: DispatchQueue = DispatchQueue(label: "BreedsListViewModel")) {
         self.client = client
+        fetchDogBreeds()
     }
     
     func fetchDogBreeds() {
