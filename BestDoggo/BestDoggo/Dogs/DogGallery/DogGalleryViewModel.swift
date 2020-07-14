@@ -1,5 +1,5 @@
 //
-//  BreedImageViewModel.swift
+//  DogGalleryViewModel.swift
 //  BestDoggo
 //
 //  Created by Chris McLearnon on 13/07/2020.
@@ -9,16 +9,21 @@
 import Foundation
 import Combine
 
-class BreedImageViewModel: ObservableObject {
-    @Published var imageURLList: [String] = []
+class DogGalleryViewModel: ObservableObject {
+    @Published var imageURLList: [[String]] = []
+    @Published var breed: String
     
     private let client: APIClient
     
     private var urlTask: AnyCancellable?
-    private var imageTask: AnyCancellable?
     
     init(breed: String, client: APIClient) {
         self.client = client
+        self.breed = breed
+        fetchImageURLs()
+    }
+    
+    func fetchImageURLs() {
         urlTask = client.getRandomImageURLs(for: breed, amount: 10)
             .mapError({ (error) -> APIError in
                 return .network(description: "Error fetching image URL")
@@ -37,7 +42,7 @@ class BreedImageViewModel: ObservableObject {
                 },
                 receiveValue: { [weak self] urls in
                     guard let self = self else { return }
-                    self.imageURLList = urls
+                    self.imageURLList = urls.clump(by: 2)
             })
     }
 }

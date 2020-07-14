@@ -29,7 +29,7 @@ struct AsyncImage<Placeholder: View>: View {
     private var image: some View {
         Group {
             if loader.image != nil {
-                configuration(Image(uiImage: loader.image!))
+                configuration(Image(uiImage: loader.image!).resizable().scaledToFit().cornerRadius(10) as! Image)
             } else {
                 placeholder
             }
