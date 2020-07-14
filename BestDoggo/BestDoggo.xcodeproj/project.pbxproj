@@ -18,6 +18,8 @@
 		7FA943C824BCC957009F729E /* DogGalleryImageRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA943C724BCC957009F729E /* DogGalleryImageRow.swift */; };
 		7FA943CB24BDE319009F729E /* String+Capitalisation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA943CA24BDE319009F729E /* String+Capitalisation.swift */; };
 		7FA943CD24BDE339009F729E /* Sequence+2DArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA943CC24BDE339009F729E /* Sequence+2DArray.swift */; };
+		7FA943CF24BE20A3009F729E /* DogListCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA943CE24BE20A3009F729E /* DogListCardView.swift */; };
+		7FA943D124BE2ABB009F729E /* DogListCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA943D024BE2ABB009F729E /* DogListCardViewModel.swift */; };
 		7FAE58D024B628E1008E8F48 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FAE58CF24B628E1008E8F48 /* AppDelegate.swift */; };
 		7FAE58D224B628E1008E8F48 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FAE58D124B628E1008E8F48 /* SceneDelegate.swift */; };
 		7FAE58D624B628E4008E8F48 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7FAE58D524B628E4008E8F48 /* Assets.xcassets */; };
@@ -57,6 +59,8 @@
 		7FA943C724BCC957009F729E /* DogGalleryImageRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogGalleryImageRow.swift; sourceTree = "<group>"; };
 		7FA943CA24BDE319009F729E /* String+Capitalisation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Capitalisation.swift"; sourceTree = "<group>"; };
 		7FA943CC24BDE339009F729E /* Sequence+2DArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Sequence+2DArray.swift"; sourceTree = "<group>"; };
+		7FA943CE24BE20A3009F729E /* DogListCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogListCardView.swift; sourceTree = "<group>"; };
+		7FA943D024BE2ABB009F729E /* DogListCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogListCardViewModel.swift; sourceTree = "<group>"; };
 		7FAE58CC24B628E1008E8F48 /* BestDoggo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BestDoggo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7FAE58CF24B628E1008E8F48 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7FAE58D124B628E1008E8F48 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -240,6 +244,8 @@
 			children = (
 				7FAE590724BA2088008E8F48 /* BreedsListView.swift */,
 				7FAE590924BA25CD008E8F48 /* BreedsListViewModel.swift */,
+				7FA943CE24BE20A3009F729E /* DogListCardView.swift */,
+				7FA943D024BE2ABB009F729E /* DogListCardViewModel.swift */,
 			);
 			path = BreedsList;
 			sourceTree = "<group>";
@@ -441,9 +447,11 @@
 				7FA943C124BCADF3009F729E /* BreedImageView.swift in Sources */,
 				7FAE590824BA2088008E8F48 /* BreedsListView.swift in Sources */,
 				7FA943BF24BC9D8A009F729E /* BreedImageViewModel.swift in Sources */,
+				7FA943CF24BE20A3009F729E /* DogListCardView.swift in Sources */,
 				7FA943C824BCC957009F729E /* DogGalleryImageRow.swift in Sources */,
 				7FAE58D224B628E1008E8F48 /* SceneDelegate.swift in Sources */,
 				7FAE590A24BA25CD008E8F48 /* BreedsListViewModel.swift in Sources */,
+				7FA943D124BE2ABB009F729E /* DogListCardViewModel.swift in Sources */,
 				7FA943BB24BC986C009F729E /* AsyncImage.swift in Sources */,
 				7FA943CB24BDE319009F729E /* String+Capitalisation.swift in Sources */,
 				7FAE590424B90F4E008E8F48 /* Parsing.swift in Sources */,

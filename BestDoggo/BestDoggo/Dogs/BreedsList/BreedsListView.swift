@@ -23,9 +23,8 @@ struct BreedsListView: View {
                 } else {
                     ForEach(viewModel.dogList, id: \.self) { dog in
                       HStack {
-//                        BreedImageView(viewModel: BreedImageViewModel(breed: dog, client: APIClient()))
-                        Text(dog).fontWeight(.light)
-                        Spacer()
+                        DogListCardView(viewModel: DogListCardViewModel(breed: dog, client: APIClient()))
+//                        Spacer()
                       }
                     }
                 }
