@@ -21,11 +21,11 @@ struct DogListCardView: View {
         ZStack(alignment: .topTrailing) {
             VStack {
                 URLImage(URL(string: !self.viewModel.isLoading ? self.viewModel.urlList[0] : baseURL)!,
-                         delay: 0.5,
-                         placeholder: { _ in
-                            Image(systemName: "circle")
-                                .resizable()
-                                .frame(width: 150.0, height: 150.0)
+                         delay: 0.25,
+                    placeholder: {
+                        ProgressView($0) { progress in
+                            LoadingIndicator()
+                        }
                 }) { proxy in
                     proxy.image
                         .resizable()

@@ -19,10 +19,11 @@ struct DogGalleryViewImage: View {
     var body: some View {
         URLImage(URL(string: url)!, placeholder: {
             ProgressView($0) { progress in
-                Image(systemName: "circle")
-                    .resizable()
-                    .frame(width: 182.5,height:125)
+                ZStack(alignment: .center) {
+                    LoadingIndicator()
+                }
             }
+                .frame(width: 50.0, height: 50.0)
         }) { proxy in
             proxy.image
                 .resizable()

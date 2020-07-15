@@ -24,10 +24,13 @@ struct DogGalleryView: View {
                         ForEach(self.viewModel.imageURLList[array], id: \.self) { url in
                             DogGalleryViewImage(url: !self.viewModel.isLoading ? url : self.baseURL)
                         }
-                    }.lineSpacing(15)
+                    }
+                    .lineSpacing(15)
+                    .frame(minWidth: 0, idealWidth: UIScreen.main.bounds.size.width, maxWidth: .infinity)
                 }
             }
         }
+        .padding([.top])
         .navigationBarTitle(Text(self.viewModel.breed.capitalizingFirstLetter()), displayMode: .inline)
         .navigationBarItems(trailing: NavigationButton(text: "Refresh", tapAction: self.viewModel.fetchImageURLs))
     }
