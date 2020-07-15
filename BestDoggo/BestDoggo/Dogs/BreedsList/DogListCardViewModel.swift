@@ -12,6 +12,7 @@ import SwiftUI
 
 class DogListCardViewModel: ObservableObject {
     @Published var urlList: [String] = []
+    @Published var isLoading: Bool = false
     
     private let client: APIClient
     
@@ -26,6 +27,7 @@ class DogListCardViewModel: ObservableObject {
     }
     
     func fetchURLList() {
+        isLoading = true
         urlTask = client.getRandomImageURLs(for: breed, amount: 1)
             .mapError({ (error) -> APIError in
                 return .network(description: "Error fetching image URL")
@@ -45,6 +47,7 @@ class DogListCardViewModel: ObservableObject {
                 receiveValue: { [weak self] urls in
                     guard let self = self else { return }
                     self.urlList = urls
+                    self.isLoading = false
             })
     }
 }

@@ -11,6 +11,7 @@ import URLImage
 
 struct DogListCardView: View {
     @ObservedObject var viewModel: DogListCardViewModel
+    var baseURL = "https://images.dog.ceo/breeds/hound-basset/n02088238_9701.jpg"
     
     init(viewModel: DogListCardViewModel) {
         self.viewModel = viewModel
@@ -19,10 +20,17 @@ struct DogListCardView: View {
     var body: some View {
         ZStack(alignment: .topTrailing) {
             VStack {
-                URLImage(URL(string: "https://images.dog.ceo/breeds/hound-basset/n02088238_9701.jpg")!) { proxy in
+                URLImage(URL(string: !self.viewModel.isLoading ? self.viewModel.urlList[0] : baseURL)!,
+                         delay: 0.5,
+                         placeholder: { _ in
+                            Image(systemName: "circle")
+                                .resizable()
+                                .frame(width: 150.0, height: 150.0)
+                }) { proxy in
                     proxy.image
                         .resizable()
                         .aspectRatio(contentMode: .fit)
+                        .clipped()
                 }
                 HStack {
                     VStack(alignment: .leading) {
@@ -39,6 +47,7 @@ struct DogListCardView: View {
                     Spacer()
                 }
                 .padding()
+                .background(SwiftUI.Color.gray.edgesIgnoringSafeArea(.all))
             }
             .cornerRadius(10)
             .overlay(

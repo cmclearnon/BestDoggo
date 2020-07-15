@@ -10,8 +10,6 @@ import SwiftUI
 
 struct BreedsListView: View {
     @ObservedObject var viewModel: BreedsListViewModel
-
-    @State var showSheetView = false
     
     init(viewModel: BreedsListViewModel) {
         self.viewModel = viewModel
@@ -27,24 +25,11 @@ struct BreedsListView: View {
                         NavigationLink(destination: DogGalleryView(viewModel: DogGalleryViewModel(breed: dog, client: APIClient()))) {
                             DogListCardView(viewModel: DogListCardViewModel(breed: dog, client: APIClient()))
                         }
-                        
-//                        ForEach(viewModel.dogList, id: \.self) { dog in
-//                            DogListCardView(viewModel: DogListCardViewModel(breed: dog, client: APIClient()))
-////                            Button(action: {
-////                                self.showSheetView.toggle()
-////                            }) {
-////                                DogListCardView(viewModel: DogListCardViewModel(breed: dog, client: APIClient()))
-////                            }.sheet(isPresented: self.$showSheetView) {
-////                                DogGalleryView(viewModel: DogGalleryViewModel(breed: dog, client: APIClient()), showSheetView: self.$showSheetView)
-////                            }
-//                        }
                     }
                 }
               }
-//              .onAppear(perform: self.viewModel.fetchDogBreeds)
-              .navigationBarTitle("Dogs")
-                .navigationBarItems(
-                    trailing: NavigationButton(text: "Refresh", tapAction: self.viewModel.fetchDogBreeds))
+                .id(UUID())
+                .navigationBarTitle("Dogs")
         }
     }
 }
