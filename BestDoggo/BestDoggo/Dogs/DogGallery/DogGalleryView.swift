@@ -18,8 +18,12 @@ struct DogGalleryView: View {
     var body: some View {
         return ZStack {
             if !self.viewModel.imageURLList.isEmpty {
-                List {
-                    DogGalleryImageRow(viewModel: DogGalleryViewModel(breed: self.viewModel.breed, client: APIClient()))
+                List(self.viewModel.imageURLList.indices, id: \.self) { array in
+                    HStack {
+                        ForEach(self.viewModel.imageURLList[array], id: \.self) { url in
+                            DogGalleryViewImage(url: url)
+                        }
+                    }.lineSpacing(15)
                 }
             }
         }
