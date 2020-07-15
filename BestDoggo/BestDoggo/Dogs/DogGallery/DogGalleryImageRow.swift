@@ -19,7 +19,18 @@ struct DogGalleryImageRow: View {
         return ForEach(0..<self.viewModel.imageURLList.count, id: \.self) { array in
             HStack {
                 ForEach(self.viewModel.imageURLList[array], id: \.self) { url in
-                    URLImage(URL(string: url)!) { proxy in
+                    URLImage(URL(string: url)!, placeholder: {
+                        ProgressView($0) { progress in
+                            ZStack {
+                                if progress > 0.0 {
+                                    CircleProgressView(progress).stroke(lineWidth: 8.0)
+                                }
+                                else {
+                                    CircleActivityView().stroke(lineWidth: 50.0)
+                                }
+                            }
+                        }.frame(width: 50.0, height: 50.0)
+                    }) { proxy in
                         proxy.image
                             .resizable()
                             .scaledToFill()
