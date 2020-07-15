@@ -10,6 +10,7 @@ import SwiftUI
 
 struct DogGalleryView: View {
     @ObservedObject var viewModel: DogGalleryViewModel
+    var baseURL = "https://complianz.io/wp-content/uploads/2019/03/placeholder-300x202.jpg"
     
     init(viewModel: DogGalleryViewModel) {
         self.viewModel = viewModel
@@ -21,7 +22,7 @@ struct DogGalleryView: View {
                 List(self.viewModel.imageURLList.indices, id: \.self) { array in
                     HStack {
                         ForEach(self.viewModel.imageURLList[array], id: \.self) { url in
-                            DogGalleryViewImage(url: url)
+                            DogGalleryViewImage(url: !self.viewModel.isLoading ? url : self.baseURL)
                         }
                     }.lineSpacing(15)
                 }

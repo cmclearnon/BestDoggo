@@ -11,7 +11,7 @@ import URLImage
 
 struct DogListCardView: View {
     @ObservedObject var viewModel: DogListCardViewModel
-    var baseURL = "https://images.dog.ceo/breeds/hound-basset/n02088238_9701.jpg"
+    var baseURL = "https://complianz.io/wp-content/uploads/2019/03/placeholder-300x202.jpg"
     
     init(viewModel: DogListCardViewModel) {
         self.viewModel = viewModel
@@ -39,9 +39,6 @@ struct DogListCardView: View {
                             .fontWeight(.black)
                             .foregroundColor(.primary)
                             .lineLimit(3)
-                        Text("Sub-breed: \(self.viewModel.breed.capitalizingFirstLetter())".uppercased())
-                            .font(.caption)
-                            .foregroundColor(.secondary)
                     }
                     .layoutPriority(100)
                     Spacer()
