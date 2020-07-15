@@ -16,29 +16,31 @@ struct DogGalleryImageRow: View {
         self.viewModel = viewModel
     }
     var body: some View {
-        return ForEach(0..<self.viewModel.imageURLList.count, id: \.self) { array in
-            HStack {
-                ForEach(self.viewModel.imageURLList[array], id: \.self) { url in
-                    URLImage(URL(string: url)!, placeholder: {
-                        ProgressView($0) { progress in
-                            ZStack {
-                                if progress > 0.0 {
-                                    CircleProgressView(progress).stroke(lineWidth: 8.0)
+        VStack {
+            ForEach(0..<self.viewModel.imageURLList.count, id: \.self) { array in
+                HStack {
+                    ForEach(self.viewModel.imageURLList[array], id: \.self) { url in
+                        URLImage(URL(string: url)!, placeholder: {
+                            ProgressView($0) { progress in
+                                ZStack {
+                                    if progress > 0.0 {
+                                        CircleProgressView(progress).stroke(lineWidth: 8.0)
+                                    }
+                                    else {
+                                        CircleActivityView().stroke(lineWidth: 50.0)
+                                    }
                                 }
-                                else {
-                                    CircleActivityView().stroke(lineWidth: 50.0)
-                                }
-                            }
-                        }.frame(width: 50.0, height: 50.0)
-                    }) { proxy in
-                        proxy.image
-                            .resizable()
-                            .scaledToFill()
-                            .frame(width: 182.5,height:125)
-                            .cornerRadius(10)
+                            }.frame(width: 50.0, height: 50.0)
+                        }) { proxy in
+                            proxy.image
+                                .resizable()
+                                .scaledToFill()
+                                .frame(width: 182.5,height:125)
+                                .cornerRadius(10)
+                        }
                     }
-                }
-            }.lineSpacing(15)
+                }.lineSpacing(15)
+            }
         }
     }
 }

@@ -9,6 +9,8 @@
 import Foundation
 import Combine
 
+/// Generic decode funtion for decoding JSON response data into
+/// any codable type
 func decode<T: Decodable>(_ data: Data) -> AnyPublisher<T, APIError> {
   let decoder = JSONDecoder()
 
