@@ -1,2 +1,3 @@
 # BestDoggo
- A demo iOS app for Chip technical test - showcasing dogs via the Dogs API.
+ A simple iOS app built to demonstrate use of SwiftUI for full UI development.
+ - Uses Dogs API for fetching dog breeds and their images
